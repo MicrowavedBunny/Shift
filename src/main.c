@@ -15,7 +15,7 @@ int main(void)
     Camera2D camera = { 0 };
     camera.target = (Vector2){ mainSqaure.x + 425, mainSqaure.y + 425 };
     camera.offset = (Vector2){ screenWidth/2.0f, screenHeight/2.0f };
-   // camera.offset = (Vector2){ 425.0f, 425.0f };
+    //camera.offset = (Vector2){ 425.0f, 425.0f };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
 
@@ -37,20 +37,25 @@ int main(void)
         if (player.y <= mainSqaure.y) player.y = mainSqaure.y;
         else if (player.y + player.height >= mainSqaure.y + mainSqaure.height) player.y = (mainSqaure.y + mainSqaure.height) - player.height;
         
-        
+        //align camera
         camera.target = (Vector2){ mainSqaure.x + 425, mainSqaure.y + 425};
+        
+        //possibly temp camera rotation controls
         if (IsKeyDown(KEY_A)) camera.rotation--;
         else if (IsKeyDown(KEY_S)) camera.rotation++;
         
+        //possibly temp rotation lock
         if (camera.rotation > 180) camera.rotation = 180;
         else if (camera.rotation < -180) camera.rotation = -180;
         
+        /* temp player movement controls
         if (IsKeyDown(KEY_RIGHT)) player.x += 2.0f;
         if (IsKeyDown(KEY_LEFT)) player.x -= 2.0f;
         if (IsKeyDown(KEY_UP)) player.y -= 2.0f;
         if (IsKeyDown(KEY_DOWN)) player.y += 2.0f;
+        */
         
-        /*
+        //trying to figure out how to apply gravity based on camera rotation
         switch((int)camera.rotation){
         case -180:
         player.y -= 5;
@@ -63,7 +68,7 @@ int main(void)
         case 180:
         player.y -= 5;
         }
-        */
+        
         
         
         
